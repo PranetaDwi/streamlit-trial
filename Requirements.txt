@@ -1,0 +1,5 @@
+streamlit 
+SpeechRecognition 
+pydub 
+ffmpeg-python
+pyaudio
