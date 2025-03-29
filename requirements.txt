@@ -3,3 +3,4 @@ SpeechRecognition
 pydub 
 ffmpeg-python
 ffmpeg
+libav-tools
