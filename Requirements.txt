@@ -1,4 +1,4 @@
 streamlit 
-SpeechRecognition 
+speech_recognition
 pydub 
 ffmpeg-python
