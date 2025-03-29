@@ -3,6 +3,10 @@ import speech_recognition as sr
 import tempfile
 import os
 from pydub import AudioSegment
+from pydub.utils import which
+
+# Pastikan ffmpeg dikenali oleh pydub
+AudioSegment.converter = which("ffmpeg")
 
 st.title("Pengenalan Perintah Suara")
 
@@ -15,7 +19,6 @@ if uploaded_file is not None:
         file_path = temp_file.name
         audio = AudioSegment.from_file(uploaded_file)
         audio.export(file_path, format="wav")  # Konversi ke WAV
-        temp_file.close()
 
     # Tampilkan audio
     st.audio(file_path, format="audio/wav")
@@ -24,12 +27,12 @@ if uploaded_file is not None:
     recognizer = sr.Recognizer()
     with sr.AudioFile(file_path) as source:
         st.write("Mengenali suara...")
-        audio_data = recognizer.record(source)  # Rekam seluruh audio
+        audio_data = recognizer.record(source)
 
         try:
             # Gunakan bahasa Indonesia
             command_text = recognizer.recognize_google(audio_data, language="id-ID")
-            st.success(f"Perintah yang dikenali: **{command_text}**")
+            st.success(f"Perintah yang dikenali: {command_text}")
         except sr.UnknownValueError:
             st.error("Maaf, tidak dapat mengenali suara.")
         except sr.RequestError:
@@ -37,4 +40,3 @@ if uploaded_file is not None:
 
     # Hapus file sementara
     os.remove(file_path)
-
