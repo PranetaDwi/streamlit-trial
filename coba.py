@@ -2,6 +2,7 @@ import streamlit as st
 import speech_recognition as sr
 import tempfile
 import os
+os.system("which ffmpeg")
 from pydub import AudioSegment
 from pydub.utils import which
 
