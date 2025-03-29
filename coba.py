@@ -1,3 +1,4 @@
+os.system("pip install speechrecognition pydub ffmpeg")
 import streamlit as st
 import speech_recognition as sr
 import tempfile
